@@ -25,7 +25,10 @@ python3 emotion.py -s <subject>
 # launch server (allow streaming to manager - must be launch from src directory)
 # expose port 8080
 # camera 1 
+# run the browser on following address (only chrome)
+# http://localhost:8080/cam.mjpg
 python3 server.py 
+
 
 ```
 
