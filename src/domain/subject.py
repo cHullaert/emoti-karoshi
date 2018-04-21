@@ -11,6 +11,7 @@ CONST_BUZZ = "http://10.100.3.48/on/3"
 MONGO_CONNECTION = "mongodb://10.100.1.22:27017"
 MONGO_DATABASE = "angularfullstack"
 COLLECTION = "mood"
+COLLECTION_VECTOR = "mood_vector"
 
 
 class Subject:
@@ -45,13 +46,24 @@ class Subject:
         self.scheduler.shutdown()
 
     def add(self, labels, mood, gender):
-        labeledMoods = np.array(list(zip(labels, mood)))
+        labeledMoods = np.array(list(zip(labels, mood[0])))
         timestamp = int(time.time())
 
         self.gender = gender
 
+        post = {
+            "collaborator": self.name,
+            "gender": gender,
+            "timestamp": timestamp
+        }
+
         for labeledMood in labeledMoods:
-            self.mood.append((timestamp, labeledMood[0], labeledMood[1]))
+            post[labeledMood[0]] = labeledMood[1]
+
+        mongo = MongoClient(MONGO_CONNECTION)
+        database = mongo[MONGO_DATABASE]
+
+        database[COLLECTION_VECTOR].insert_one(post)
 
     def persist(self, mood, gender, timestamp):
         mongo = MongoClient(MONGO_CONNECTION)

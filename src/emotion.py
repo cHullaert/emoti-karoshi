@@ -89,8 +89,9 @@ def main(argv):
             gray_face = preprocess_input(gray_face, False)
             gray_face = np.expand_dims(gray_face, 0)
             gray_face = np.expand_dims(gray_face, -1)
-            emotion_label_arg = np.argmax(
-                emotion_classifier.predict(gray_face))
+            emotion_prediction = emotion_classifier.predict(gray_face)
+            emotion_label_arg = np.argmax(emotion_prediction)
+
             emotion_text = emotion_labels[emotion_label_arg]
             emotion_window.append(emotion_text)
 
@@ -101,6 +102,8 @@ def main(argv):
             gender_text = gender_labels[gender_label_arg]
             gender_window.append(gender_text)
 
+            subject.add(emotion_labels.values(),
+                        emotion_prediction, gender_text)
             subject.addMood(emotion_text, gender_text)
 
             if len(gender_window) > frame_window:
