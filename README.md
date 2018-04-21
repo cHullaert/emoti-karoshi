@@ -29,5 +29,15 @@ python3 server.py
 
 ```
 
-sudo apt install python-pip3 python-opencv
-pip3 install pymongo
+# dependency
+keras
+tensorflow
+pandas
+numpy
+h5py
+statistics
+apscheduler
+pymongo
+python-opencv
+matplotlib
+python3-tk
