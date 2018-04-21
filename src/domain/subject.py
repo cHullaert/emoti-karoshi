@@ -20,6 +20,7 @@ class Subject:
         self.mood = []
         self.scheduler = None
         self.name = "(no collaborator)"
+        self.url = CONST_BUZZ
 
     def evaluate(self):
         current = int(time.time())
@@ -35,7 +36,7 @@ class Subject:
             self.unload()
 
     def unload(self):
-        urllib.request.urlopen(CONST_BUZZ).read()
+        urllib.request.urlopen(self.url).read()
 
     def start(self):
         self.scheduler = Scheduler()

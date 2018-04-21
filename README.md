@@ -20,7 +20,7 @@
 # launch analyser (must be launch from src directory)
 # camera 0 
 # subject represent the name of the collaborator
-python3 emotion.py -s <subject>
+python3 emotion.py -s <subject> -u <url>
 
 # launch server (allow streaming to manager - must be launch from src directory)
 # expose port 8080

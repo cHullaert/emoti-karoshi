@@ -50,20 +50,23 @@ def main(argv):
     video_capture = cv2.VideoCapture(0)
 
     try:
-        opts, args = getopt.getopt(argv, "hs:", ["subject="])
+        opts, args = getopt.getopt(argv, "hs:u:", ["subject=", "url="])
     except getopt.GetoptError:
-        print("emotion.py -s <subject>")
+        print("emotion.py -s <subject> -u <url>")
         sys.exit(2)
 
     subject = Subject()
     for opt, arg in opts:
         if opt == '-h':
-            print("emotion.py - s <subject>")
+            print("emotion.py - s <subject> -u <url>")
             sys.exit()
         elif opt in ("-s", "--subject"):
             subject.name = arg
+        elif opt in ("-u", "--url"):
+            subject.url = arg
 
     print(subject.name)
+    print(subject.url)
 
     subject.start()
 
