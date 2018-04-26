@@ -61,21 +61,21 @@ class Subject:
         for labeledMood in labeledMoods:
             post[labeledMood[0]] = labeledMood[1]
 
-        mongo = MongoClient(MONGO_CONNECTION)
-        database = mongo[MONGO_DATABASE]
+        #mongo = MongoClient(MONGO_CONNECTION)
+        #database = mongo[MONGO_DATABASE]
 
-        database[COLLECTION_VECTOR].insert_one(post)
+        # database[COLLECTION_VECTOR].insert_one(post)
 
     def persist(self, mood, gender, timestamp):
-        mongo = MongoClient(MONGO_CONNECTION)
-        database = mongo[MONGO_DATABASE]
+        #mongo = MongoClient(MONGO_CONNECTION)
+        #database = mongo[MONGO_DATABASE]
 
         post = {"collaborator": self.name,
                 "mood": mood,
                 "gender": gender,
                 "timestamp": timestamp}
 
-        database[COLLECTION].insert_one(post)
+        # database[COLLECTION].insert_one(post)
 
     def addMood(self, mood, gender):
         timestamp = int(time.time())
